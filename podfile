@@ -1,0 +1,6 @@
+pod 'MBProgressHUD', '~> 1.0.0'
+pod 'AFNetworking', '~> 3.1.0'
+
+target 'ArtLife' do
+
+end

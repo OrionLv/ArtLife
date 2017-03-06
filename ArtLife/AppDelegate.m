@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "XBTabBarContorller.h"
 
 @interface AppDelegate ()
 
@@ -16,7 +17,12 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    XBTabBarContorller *vc = [[XBTabBarContorller alloc] init];
+    self.window.rootViewController = vc;
+    [self.window makeKeyAndVisible];
+  
     return YES;
 }
 
