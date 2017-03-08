@@ -197,7 +197,7 @@
     if(indexPath.row > 0){
         
         XBNewReadPageController *secondVC = [[XBNewReadPageController alloc] init];
-        XBReadListModel *model = self.ReadListArray[indexPath.row];
+        XBReadListModel *model = self.ReadListArray[indexPath.row - 1];
         secondVC.typeID = [NSString stringWithFormat:@"%ld", model.type];
         [self.navigationController pushViewController:secondVC animated:YES];
     }

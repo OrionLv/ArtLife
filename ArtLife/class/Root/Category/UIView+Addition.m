@@ -107,4 +107,29 @@
     self.frame = frame;
 }
 
+-(void)setXb_centerX:(CGFloat)xb_centerX
+{
+    CGPoint center = self.center;
+    center.x = xb_centerX;
+    self.center = center;
+}
+
+-(CGFloat)xb_centerX
+{
+    return self.center.x;
+}
+
+-(void)setXb_centerY:(CGFloat)xb_centerY
+{
+    CGPoint center = self.center;
+    center.y = xb_centerY;
+    self.center = center;
+}
+
+-(CGFloat)xb_centerY
+{
+    return self.center.y;
+}
+
+
 @end

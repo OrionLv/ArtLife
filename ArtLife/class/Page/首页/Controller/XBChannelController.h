@@ -1,5 +1,5 @@
 //
-//  XBMyHeadView.h
+//  XBChannelController.h
 //  ArtLife
 //
 //  Created by lxb on 2017/3/6.
@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface XBMyHeadView : UIView
+@interface XBChannelController : UITableViewController
 
-@property (nonatomic,copy) void(^BtnClick)();
+@property (nonatomic, assign) NSInteger channesID;
 
 @end

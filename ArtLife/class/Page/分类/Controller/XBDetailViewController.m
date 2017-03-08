@@ -77,8 +77,8 @@
     
     [contentLable mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(imaeg.mas_bottom).offset(30);
-        make.left.equalTo(self).offset(30);
-        make.right.equalTo(self).offset(30);
+        make.left.mas_equalTo(30);
+        make.right.mas_equalTo(-30);
     }];
     
     [self setModel:self.model];

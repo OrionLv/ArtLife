@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "XBLaunchinigController.h"
 #import "XBTabBarContorller.h"
 
 @interface AppDelegate ()
@@ -23,6 +24,11 @@
     self.window.rootViewController = vc;
     [self.window makeKeyAndVisible];
   
+//    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+//    XBLaunchinigController *vc = [[XBLaunchinigController alloc] init];
+//    self.window.rootViewController = vc;
+//    [self.window makeKeyAndVisible];
+    
     return YES;
 }
 

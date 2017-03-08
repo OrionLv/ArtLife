@@ -46,11 +46,32 @@
 
 #define Blog @"http://www.jianshu.com/u/5d388cebf5e2"
 
+#define BaseAPI @"http://api.dantangapp.com/"
+
+
+// rgb颜色方法
+#define MRRGBColor(r, g, b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
+
+// 随机颜色
+#define MRRandomColor MRRGBColor(arc4random_uniform(256), arc4random_uniform(256), arc4random_uniform(256))
+
+// 全局主题颜色
+#define MRGlobalBg MRRGBColor(245, 80, 83)
+
+// 主题背景颜色
+#define LYBgColor MRRGBColor(240, 240, 240)
+
+//导航栏颜色
+#define NavColor 0x3399cc
+
 
 // 每日列表
 #define dailyList @"http://baobab.wandoujia.com/api/v1/feed.bak?num=%ld&date=%@"
 
 #define MyLog(FORMAT, ...) fprintf(stderr,"%s: 第%d行\t%s\n",[[[NSString stringWithUTF8String:__FILE__] lastPathComponent] UTF8String], __LINE__, [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String]);
+
+//默认背景色
+#define defaultColor 0xe9eff5
 
 
 #endif /* GobelDefine_h */

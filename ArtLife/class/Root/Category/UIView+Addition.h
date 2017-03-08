@@ -14,6 +14,10 @@
 @property (nonatomic, assign) CGFloat sd_y;
 @property (nonatomic, assign) CGFloat sd_x;
 
+@property (nonatomic, assign) CGFloat xb_centerX;
+/**frame的中心点y*/
+@property (nonatomic, assign) CGFloat xb_centerY;
+
 
 
 //宽
@@ -45,6 +49,8 @@
 
 //设置y
 - (void)setYOffset:(CGFloat)y;
+
+
 
 
 @end
