@@ -115,8 +115,9 @@
     self.waitView = [[XBLoadingView alloc] initWithFrame:self.view.frame];
     [self.waitView showLoadingTo:self.view];
     
-    //发送网络请求
-    [self setupUrlRequest];
+//    //发送网络请求
+//    [self setupUrlRequest];
+    [self getData];
     
     self.automaticallyAdjustsScrollViewInsets = NO;
     
@@ -151,7 +152,7 @@
 
 -(void)loadData{
     
-    [self setupUrlRequest];
+    [self getData];
     [self.collectionView.mj_header endRefreshing];
 }
 
@@ -168,16 +169,14 @@
         cell.backgroundView = [self setupTopView];
         
         //给轮播器设置数据
-        NSMutableArray *imgs = [NSMutableArray array];
-        for(XBReadcarousel *temp in self.cacheImages){
-            [imgs addObject:temp.img];
-        }
+        NSArray *imgs = @[@"http://lorempixel.com/400/200/sports/6/", @"http://lorempixel.com/400/200/sports/1/"];
         self.SDscrollView.imageURLStringsGroup = imgs;
         
     }else{
         XBReadPhotoView *photoView = [[XBReadPhotoView alloc] init];
         photoView.backgroundColor = [UIColor orangeColor];
-        photoView.model = self.ReadListArray[indexPath.row - 1];
+        photoView.coverImageView.image = [UIImage imageNamed:self.ReadListArray[indexPath.row - 1]];
+//        photoView.model = self.ReadListArray[indexPath.row - 1];
         cell.backgroundView = photoView;
     }
     
@@ -197,40 +196,44 @@
     if(indexPath.row > 0){
         
         XBNewReadPageController *secondVC = [[XBNewReadPageController alloc] init];
-        XBReadListModel *model = self.ReadListArray[indexPath.row - 1];
-        secondVC.typeID = [NSString stringWithFormat:@"%ld", model.type];
+//        XBReadListModel *model = self.ReadListArray[indexPath.row - 1];
+//        secondVC.typeID = [NSString stringWithFormat:@"%ld", model.type];
         [self.navigationController pushViewController:secondVC animated:YES];
     }
 }
 
 #pragma mark - loadRequest method
+//
+//-(void)setupUrlRequest{
+//    
+//    [[AFOwnerHTTPSessionManager manager] getURL:@"http://api2.pianke.me/read/columns" Parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+//        NSLog(@"%@", responseObject);
+//        
+//        NSDictionary *dataDic = responseObject[@"data"];
+//        
+//        [self.waitView dismiss];
+//        
+//    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//        
+//        [SVProgressHUD showErrorWithStatus:@"网络不给力"];
+//        [self.waitView dismiss];
+//    }];
+//}
 
--(void)setupUrlRequest{
+-(void)getData{
+    //顶部滚动视图数据模型
+    self.cacheImages = @[@"img_00", @"img_01"];
     
-    [[AFOwnerHTTPSessionManager manager] getURL:@"http://api2.pianke.me/read/columns" Parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSLog(@"%@", responseObject);
-        
-        NSDictionary *dataDic = responseObject[@"data"];
-        //顶部滚动视图数据模型
-        self.cacheImages = [XBReadcarousel mj_objectArrayWithKeyValuesArray:dataDic[@"carousel"]];
-        
-        //书本的数据模型
-        self.ReadListArray = [XBReadListModel mj_objectArrayWithKeyValuesArray:dataDic[@"list"]];
-
-        //创建collectionView
-        [self.view addSubview:self.collectionView];
-
-        
-        //刷新数据
-        [self.collectionView reloadData];
+    //书本的数据模型
+    self.ReadListArray = @[@"img_02.jpg", @"img_03", @"img_04.jpg", @"img_05.jpg", @"img_06.jpg", @"img_07.jpeg", @"img_08.jpeg", @"img_09.jpeg", @"img_10"];
     
-        [self.waitView dismiss];
-        
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        
-        [SVProgressHUD showErrorWithStatus:@"网络不给力"];
-        [self.waitView dismiss];
-    }];
+    //创建collectionView
+    [self.view addSubview:self.collectionView];
+    
+    
+    //刷新数据
+    [self.collectionView reloadData];
+
 }
 
 #pragma mark - SDCycleScrollViewDelegate

@@ -13,8 +13,7 @@
 
 @interface XBReadPhotoView ()
 
-/**图片ImageView*/
-@property (nonatomic, strong) UIImageView *coverImageView;
+
 
 /**书名lable*/
 @property (nonatomic, strong) UILabel *nameLabel;
@@ -99,19 +98,19 @@
 }
 
 #pragma mark - setter Method
--(void)setModel:(XBReadListModel *)model
-{
-    _model = model;
-    
-    [self.coverImageView sd_setImageWithURL:[NSURL URLWithString:_model.coverimg]];
-    
-    NSLog(@"%@", _model.coverimg);
-    if(self.coverImageView.image == nil){
-        self.coverImageView.image = [UIImage imageNamed:@"21.jpg"];
-    }
-    
-    self.nameLabel.text = model.name;
-    
-    self.ennameLabel.text = model.enname;
-}
+//-(void)setModel:(XBReadListModel *)model
+//{
+//    _model = model;
+//    
+//    [self.coverImageView sd_setImageWithURL:[NSURL URLWithString:_model.coverimg]];
+//    
+//    NSLog(@"%@", _model.coverimg);
+//    if(self.coverImageView.image == nil){
+//        self.coverImageView.image = [UIImage imageNamed:@"21.jpg"];
+//    }
+//    
+//    self.nameLabel.text = model.name;
+//    
+//    self.ennameLabel.text = model.enname;
+//}
 @end

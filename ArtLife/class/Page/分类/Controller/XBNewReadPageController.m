@@ -18,8 +18,9 @@
 #import "ReadSecondListModel.h"
 #import "SVProgressHUD.h"
 #import "XBDetailViewController.h"
+#import "GobelDefine.h"
 
-@interface XBNewReadPageController ()<UITableViewDelegate, UITableViewDataSource>
+@interface XBNewReadPageController ()<UITableViewDelegate, UITableViewDataSource, UIWebViewDelegate>
 
 /**TableView*/
 @property (nonatomic, strong) UITableView *readSecondTableView;
@@ -52,13 +53,27 @@
 }
 
 #pragma mark - load Method
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    [SVProgressHUD showWithStatus:@"正在加载中"];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     
     self.navigationItem.title = @"类别";
     
-    [self setupSubViews];
+//    [self setupSubViews];
+    
+//    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:Blog]];
+    
+    UIWebView *web = [[UIWebView alloc] init];
+    web.frame = self.view.bounds;
+    web.delegate = self;
+    [web loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:Blog]]];
+    [self.view addSubview:web];
 }
 
 #pragma mark - private Method
@@ -184,6 +199,25 @@
         [self.readSecondTableView.mj_footer endRefreshing];
     }];
     
+}
+
+#pragma mark - webViewDelegate
+- (void)webViewDidStartLoad:(UIWebView *)webView{
+//    [SVProgressHUD showWithStatus:@"正在加载"];
+
+    //蒙版的View 展示到主页面上面
+    XBLoadingView *loadView = [[XBLoadingView alloc] init];
+    [loadView showLoadingTo:self.view];
+}
+- (void)webViewDidFinishLoad:(UIWebView *)webView{
+    [SVProgressHUD dismiss];
+}
+
+#pragma mark - load Method
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    
+    [SVProgressHUD dismiss];
 }
 
 @end

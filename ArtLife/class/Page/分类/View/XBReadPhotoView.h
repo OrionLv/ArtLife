@@ -12,7 +12,10 @@
 
 @interface XBReadPhotoView : UIView
 
-/**model*/
-@property (nonatomic, strong) XBReadListModel *model;
+///**model*/
+//@property (nonatomic, strong) XBReadListModel *model;
+
+/**图片ImageView*/
+@property (nonatomic, strong) UIImageView *coverImageView;
 
 @end
